@@ -18,6 +18,9 @@ import Wishlist from "./pages/Wishlist";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
 import NotFound from "./pages/NotFound";
+import Checkout from "./pages/Checkout";
+import Settings from "./pages/Settings";
+import Chatbot from "./components/Chatbot";
 
 const queryClient = new QueryClient();
 
@@ -51,12 +54,15 @@ const App = () => (
                 <Route path="/wishlist" element={<Wishlist />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/search" element={<Search />} />
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/settings" element={<Settings />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
             <Footer />
           </div>
+          <Chatbot />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>

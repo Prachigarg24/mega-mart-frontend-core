@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Minus, Plus, Trash2, ArrowLeft, ShoppingBag, CreditCard } from 'lucide-react';
 import { RootState } from '../store/store';
 import { updateQuantity, removeFromCart, clearCart } from '../store/slices/cartSlice';
@@ -12,6 +12,7 @@ import toast from 'react-hot-toast';
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { items, total, itemCount } = useSelector((state: RootState) => state.cart);
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -40,6 +41,7 @@ const Cart = () => {
     setTimeout(() => {
       setIsProcessing(false);
       toast.success('Redirecting to checkout...');
+      navigate('/checkout');
     }, 1500);
   };
 

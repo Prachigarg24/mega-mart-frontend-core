@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
-import { Search, ShoppingCart, Heart, User, Menu, X } from 'lucide-react';
+import { Search, ShoppingCart, Heart, User, Menu, X, Settings } from 'lucide-react';
 import { RootState } from '../store/store';
 import { logout } from '../store/slices/authSlice';
 import { Button } from './ui/button';
@@ -211,6 +211,12 @@ const Navbar = () => {
                       <Button variant="ghost" className="w-full justify-start">
                         <User className="w-4 h-4 mr-2" />
                         Profile
+                      </Button>
+                    </Link>
+                    <Link to="/settings" onClick={() => setIsMenuOpen(false)}>
+                      <Button variant="ghost" className="w-full justify-start">
+                        <Settings className="w-4 h-4 mr-2" />
+                        Settings
                       </Button>
                     </Link>
                     <Link to="/wishlist" onClick={() => setIsMenuOpen(false)}>

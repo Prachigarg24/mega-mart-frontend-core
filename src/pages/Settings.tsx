@@ -1,3 +1,4 @@
+// Settings page for Mega Mart - User preferences and configuration
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';

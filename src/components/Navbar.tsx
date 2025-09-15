@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 import { Search, ShoppingCart, Heart, User, Menu, X, Settings } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 import { RootState } from '../store/store';
 import { logout } from '../store/slices/authSlice';
 import { Button } from './ui/button';
@@ -89,6 +90,8 @@ const Navbar = () => {
 
             {/* Right Section */}
             <div className="flex items-center space-x-4">
+              {/* Theme Toggle */}
+              <ThemeToggle />
               {/* Wishlist */}
               <Link to="/wishlist" className="hidden md:flex relative">
                 <Button variant="ghost" size="sm" className="relative">

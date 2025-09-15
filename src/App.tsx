@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import toast, { Toaster as HotToaster } from "react-hot-toast";
 import { store } from "./store/store";
+import { ThemeProvider } from "./components/ThemeProvider";
+import WelcomePopup from "./components/WelcomePopup";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Index from "./pages/Index";
@@ -27,7 +29,13 @@ const queryClient = new QueryClient();
 const App = () => (
   <Provider store={store}>
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="light"
+        enableSystem={false}
+        disableTransitionOnChange={false}
+      >
+        <TooltipProvider>
         <Toaster />
         <Sonner />
         <HotToaster 
@@ -63,8 +71,10 @@ const App = () => (
             <Footer />
           </div>
           <Chatbot />
+          <WelcomePopup />
         </BrowserRouter>
-      </TooltipProvider>
+        </TooltipProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   </Provider>
 );

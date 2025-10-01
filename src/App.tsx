@@ -22,6 +22,8 @@ import Search from "./pages/Search";
 import NotFound from "./pages/NotFound";
 import Checkout from "./pages/Checkout";
 import Settings from "./pages/Settings";
+import Deals from "./pages/Deals";
+import Products from "./pages/Products";
 import Chatbot from "./components/Chatbot";
 
 const queryClient = new QueryClient();
@@ -64,6 +66,8 @@ const App = () => (
                 <Route path="/search" element={<Search />} />
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/settings" element={<Settings />} />
+                <Route path="/deals" element={<Deals />} />
+                <Route path="/products" element={<Products />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

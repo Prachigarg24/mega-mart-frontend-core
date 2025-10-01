@@ -25,6 +25,7 @@ import Settings from "./pages/Settings";
 import Deals from "./pages/Deals";
 import Products from "./pages/Products";
 import Chatbot from "./components/Chatbot";
+import Admin from "./pages/Admin";
 
 const queryClient = new QueryClient();
 
@@ -68,6 +69,7 @@ const App = () => (
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/deals" element={<Deals />} />
                 <Route path="/products" element={<Products />} />
+                <Route path="/admin" element={<Admin />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

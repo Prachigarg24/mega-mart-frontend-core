@@ -32,33 +32,16 @@ const Profile = () => {
     return null;
   }
 
-  // Mock orders data
-  const mockOrders = [
-    {
-      id: 'ORD001',
-      date: '2024-03-15',
-      status: 'delivered',
-      total: 79999,
-      items: 2,
-      products: ['Apple iPhone 14', 'Sony Headphones']
-    },
-    {
-      id: 'ORD002',
-      date: '2024-03-10',
-      status: 'shipped',
-      total: 3499,
-      items: 1,
-      products: ['Levi\'s Jeans']
-    },
-    {
-      id: 'ORD003',
-      date: '2024-03-08',
-      status: 'processing',
-      total: 24999,
-      items: 1,
-      products: ['Modern Sofa Set']
-    }
-  ];
+  // Get real orders from localStorage
+  const storedOrders = JSON.parse(localStorage.getItem('megamart_orders') || '[]');
+  const userOrders = storedOrders.map((order: any) => ({
+    id: order.id,
+    date: new Date(order.date).toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' }),
+    status: order.status,
+    total: order.total,
+    items: order.items.length,
+    products: order.items.map((item: any) => item.name)
+  }));
 
   // Mock addresses
   const mockAddresses = [
@@ -167,7 +150,7 @@ const Profile = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Total Orders</p>
-                  <p className="text-2xl font-bold">{mockOrders.length}</p>
+                  <p className="text-2xl font-bold">{userOrders.length}</p>
                 </div>
                 <ShoppingBag className="w-8 h-8 text-primary" />
               </div>
@@ -243,9 +226,9 @@ const Profile = () => {
                       </Button>
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
+                   <CardContent>
                     <div className="space-y-4">
-                      {mockOrders.slice(0, 3).map((order) => {
+                      {userOrders.length > 0 ? userOrders.slice(0, 3).map((order: any) => {
                         const StatusIcon = getStatusIcon(order.status);
                         return (
                           <div key={order.id} className="flex items-center justify-between p-4 border border-border rounded-lg">
@@ -262,12 +245,18 @@ const Profile = () => {
                                 {order.status}
                               </Badge>
                             </div>
-                          </div>
-                        );
-                      })}
+                           </div>
+                         );
+                       }) : (
+                        <div className="text-center py-8 text-muted-foreground">
+                          <Package className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                          <p>No orders yet</p>
+                          <Button variant="link" onClick={() => navigate('/')}>Start Shopping</Button>
+                        </div>
+                       )}
                     </div>
-                  </CardContent>
-                </Card>
+                   </CardContent>
+                 </Card>
 
                 {/* Profile Information */}
                 <Card>
@@ -328,7 +317,7 @@ const Profile = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    {mockOrders.map((order) => {
+                    {userOrders.length > 0 ? userOrders.map((order: any) => {
                       const StatusIcon = getStatusIcon(order.status);
                       return (
                         <div key={order.id} className="border border-border rounded-lg p-6">
@@ -371,7 +360,14 @@ const Profile = () => {
                           </div>
                         </div>
                       );
-                    })}
+                    }) : (
+                      <div className="text-center py-12">
+                        <Package className="w-16 h-16 mx-auto mb-4 text-muted-foreground opacity-50" />
+                        <h3 className="text-lg font-semibold mb-2">No Orders Yet</h3>
+                        <p className="text-muted-foreground mb-4">Start shopping to see your orders here</p>
+                        <Button onClick={() => navigate('/')}>Browse Products</Button>
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>

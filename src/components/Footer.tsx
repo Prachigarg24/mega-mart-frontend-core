@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from 'lucide-react';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState('');
 
   const footerLinks = {
     company: [
@@ -165,26 +168,47 @@ const Footer = () => {
         <div className="border-t border-border mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-center md:text-left">
-              <h3 className="font-semibold mb-2">Stay in the loop</h3>
+              <h3 className="font-semibold mb-2">Never Miss a Deal!</h3>
               <p className="text-sm text-muted-foreground">
-                Subscribe to get special offers, free giveaways, and deals.
+                Subscribe to get notified about flash sales and exclusive deals
               </p>
             </div>
             
-            <div className="flex gap-2 w-full max-w-sm">
+            <form 
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                  toast.error('Please enter a valid email address');
+                  return;
+                }
+                const subscribers = JSON.parse(localStorage.getItem('megamart_subscribers') || '[]');
+                if (subscribers.includes(email)) {
+                  toast.error('You are already subscribed!');
+                  return;
+                }
+                subscribers.push(email);
+                localStorage.setItem('megamart_subscribers', JSON.stringify(subscribers));
+                toast.success('Successfully subscribed to our newsletter! 🎉');
+                setEmail('');
+              }}
+              className="flex gap-2 w-full max-w-sm"
+            >
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-3 py-2 border border-border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-1 px-3 py-2 bg-background border border-border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               />
               <motion.button
+                type="submit"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary-hover transition-colors"
+                className="px-4 py-2 bg-gradient-primary text-white rounded-md text-sm font-medium shadow-elegant hover:shadow-lg transition-all"
               >
                 Subscribe
               </motion.button>
-            </div>
+            </form>
           </div>
         </div>
 

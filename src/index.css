@@ -193,29 +193,13 @@
     transition: var(--transition-bounce);
   }
 
-  /* Button Variants - Enhanced */
+  /* Button Variants - Simple & Clean */
   .btn-hero {
-    @apply relative overflow-hidden bg-gradient-to-r from-primary via-purple-600 to-secondary text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-glow transition-all duration-300 transform hover:scale-105;
-  }
-
-  .btn-hero::after {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: var(--gradient-shine);
-    transform: rotate(45deg);
-    transition: all 0.6s ease;
-  }
-
-  .btn-hero:hover::after {
-    left: 100%;
+    @apply bg-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold shadow-md hover:bg-primary-hover transition-all duration-300;
   }
 
   .btn-outline-hero {
-    @apply border-2 border-primary text-primary px-8 py-4 rounded-xl font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:shadow-glow;
+    @apply border-2 border-primary text-primary px-8 py-4 rounded-lg font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300;
   }
 
   /* Hover Effects */

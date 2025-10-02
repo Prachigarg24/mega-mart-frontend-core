@@ -18,6 +18,7 @@ const CategoryPage = () => {
   const { products } = useSelector((state: RootState) => state.products);
   
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [sortBy, setSortBy] = useState('name');
   const [searchQuery, setSearchQuery] = useState('');
@@ -25,6 +26,7 @@ const CategoryPage = () => {
   const [selectedRating, setSelectedRating] = useState(0);
   const [inStockOnly, setInStockOnly] = useState(false);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+  const [itemsToShow, setItemsToShow] = useState(12);
 
   // Convert category slug to display name
   const getCategoryDisplayName = (slug?: string) => {
@@ -85,7 +87,12 @@ const CategoryPage = () => {
     });
 
     setFilteredProducts(filtered);
-  }, [products, category, searchQuery, priceRange, selectedRating, inStockOnly, sortBy]);
+    setDisplayedProducts(filtered.slice(0, itemsToShow));
+  }, [products, category, searchQuery, priceRange, selectedRating, inStockOnly, sortBy, itemsToShow]);
+
+  const loadMoreProducts = () => {
+    setItemsToShow(prev => prev + 12);
+  };
 
   const categoryProducts = products.filter(product => {
     if (category && category !== 'all') {
@@ -101,6 +108,7 @@ const CategoryPage = () => {
     setSelectedRating(0);
     setInStockOnly(false);
     setSortBy('name');
+    setItemsToShow(12);
   };
 
   return (
@@ -353,7 +361,7 @@ const CategoryPage = () => {
             )}
 
             {/* Products Grid */}
-            {filteredProducts.length > 0 ? (
+            {displayedProducts.length > 0 ? (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -364,7 +372,7 @@ const CategoryPage = () => {
                     : 'grid-cols-1'
                 }`}
               >
-                {filteredProducts.map((product, index) => (
+                {displayedProducts.map((product, index) => (
                   <ProductCard
                     key={product.id}
                     product={product}
@@ -392,15 +400,20 @@ const CategoryPage = () => {
               </motion.div>
             )}
 
-            {/* Load More / Pagination would go here in a real app */}
-            {filteredProducts.length > 12 && (
+            {/* Load More Button */}
+            {displayedProducts.length < filteredProducts.length && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 className="text-center mt-12"
               >
-                <Button variant="outline" size="lg">
-                  Load More Products
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  onClick={loadMoreProducts}
+                  className="min-w-[200px]"
+                >
+                  Load More Products ({filteredProducts.length - displayedProducts.length} remaining)
                 </Button>
               </motion.div>
             )}

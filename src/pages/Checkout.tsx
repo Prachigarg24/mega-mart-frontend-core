@@ -77,9 +77,10 @@ const Checkout = () => {
     const newOrderId = 'MG' + Date.now().toString().slice(-6);
     setOrderId(newOrderId);
     
-    // Store order in localStorage (mock)
+    // Store order in localStorage with user ID
     const order = {
       id: newOrderId,
+      userId: user?.id,
       items,
       shippingInfo,
       paymentMethod,

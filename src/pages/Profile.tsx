@@ -32,9 +32,11 @@ const Profile = () => {
     return null;
   }
 
-  // Get real orders from localStorage
+  // Get user-specific orders from localStorage
   const storedOrders = JSON.parse(localStorage.getItem('megamart_orders') || '[]');
-  const userOrders = storedOrders.map((order: any) => ({
+  const userOrders = storedOrders
+    .filter((order: any) => order.userId === user?.id)
+    .map((order: any) => ({
     id: order.id,
     date: new Date(order.date).toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' }),
     status: order.status,

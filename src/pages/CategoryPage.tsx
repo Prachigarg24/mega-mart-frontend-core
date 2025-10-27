@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import { Filter, Grid3X3, List, SlidersHorizontal, Search, ArrowLeft } from 'lucide-react';
+import { useInView } from 'react-intersection-observer';
 import { RootState } from '../store/store';
 import { Product } from '../store/slices/productSlice';
 import ProductCard from '../components/ProductCard';
@@ -90,9 +91,21 @@ const CategoryPage = () => {
     setDisplayedProducts(filtered.slice(0, itemsToShow));
   }, [products, category, searchQuery, priceRange, selectedRating, inStockOnly, sortBy, itemsToShow]);
 
-  const loadMoreProducts = () => {
+  const loadMoreProducts = useCallback(() => {
     setItemsToShow(prev => prev + 12);
-  };
+  }, []);
+
+  // Infinite scroll setup
+  const { ref: loadMoreRef, inView } = useInView({
+    threshold: 0,
+    triggerOnce: false,
+  });
+
+  useEffect(() => {
+    if (inView && displayedProducts.length < filteredProducts.length) {
+      loadMoreProducts();
+    }
+  }, [inView, displayedProducts.length, filteredProducts.length, loadMoreProducts]);
 
   const categoryProducts = products.filter(product => {
     if (category && category !== 'all') {
@@ -400,22 +413,18 @@ const CategoryPage = () => {
               </motion.div>
             )}
 
-            {/* Load More Button */}
+            {/* Load More Trigger - Invisible */}
             {displayedProducts.length < filteredProducts.length && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="text-center mt-12"
-              >
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  onClick={loadMoreProducts}
-                  className="min-w-[200px]"
-                >
-                  Load More Products ({filteredProducts.length - displayedProducts.length} remaining)
-                </Button>
-              </motion.div>
+              <div ref={loadMoreRef} className="py-8 text-center">
+                <div className="inline-flex items-center space-x-2 text-muted-foreground">
+                  <div className="loading-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <span>Loading more products...</span>
+                </div>
+              </div>
             )}
           </div>
         </div>

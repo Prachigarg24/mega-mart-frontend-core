@@ -7,6 +7,7 @@ import { RootState } from '../store/store';
 import { setProducts } from '../store/slices/productSlice';
 import { mockProducts } from '../data/products';
 import ProductCard from '../components/ProductCard';
+import ProductCarousel from '../components/ProductCarousel';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import heroBanner from '../assets/hero-banner.jpg';
@@ -318,11 +319,7 @@ const Index = () => {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
-              {trendingProducts.map((product, index) => (
-                <ProductCard key={product.id} product={product} index={index} />
-              ))}
-            </div>
+            <ProductCarousel products={trendingProducts} title="" autoplay={true} />
           </div>
         </section>
       )}

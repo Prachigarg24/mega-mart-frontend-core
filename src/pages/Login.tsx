@@ -35,7 +35,22 @@ const Login = () => {
 
     // Simulate API call
     setTimeout(() => {
-      // Mock login - check for demo credentials
+      // Check if user exists in localStorage
+      const storedUser = localStorage.getItem('megamart_user');
+      if (storedUser) {
+        const userData = JSON.parse(storedUser);
+        if (userData.email === formData.email) {
+          // Login with stored user data
+          const mockToken = 'mock-jwt-token-' + Date.now();
+          dispatch(loginSuccess({ user: userData, token: mockToken }));
+          toast.success(`Welcome back, ${userData.name}!`);
+          navigate('/profile');
+          setIsLoading(false);
+          return;
+        }
+      }
+
+      // Fallback to demo credentials
       if (formData.email === 'demo@megamart.com' && formData.password === 'demo123') {
         const mockUser = {
           id: '1',
@@ -65,7 +80,7 @@ const Login = () => {
         toast.success(`Welcome back, Admin!`);
         navigate('/admin');
       } else {
-        toast.error('Invalid credentials! Try demo@megamart.com / demo123');
+        toast.error('Invalid credentials! Please register or use demo credentials.');
       }
       setIsLoading(false);
     }, 1500);
@@ -198,38 +213,6 @@ const Login = () => {
             </Button>
           </form>
 
-          <div className="mt-6">
-            <Separator className="mb-6" />
-            
-            {/* Demo Credentials */}
-            <div className="space-y-3">
-              <p className="text-xs text-muted-foreground text-center mb-3">
-                Try demo accounts:
-              </p>
-              <div className="grid grid-cols-2 gap-2">
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => demoLogin('user')}
-                  className="text-xs"
-                >
-                  <ShoppingBag className="w-3 h-3 mr-1" />
-                  Demo User
-                </Button>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => demoLogin('admin')}
-                  className="text-xs"
-                >
-                  <Lock className="w-3 h-3 mr-1" />
-                  Admin
-                </Button>
-              </div>
-            </div>
-          </div>
 
           {/* Sign Up Link */}
           <div className="mt-6 text-center">

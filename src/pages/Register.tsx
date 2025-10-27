@@ -170,7 +170,18 @@ const Register = () => {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
-        avatar: formData.profilePhoto || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face'
+        avatar: formData.profilePhoto || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+        addresses: [
+          {
+            id: '1',
+            type: formData.addressType,
+            street: formData.address,
+            city: formData.city,
+            state: formData.state,
+            zipCode: formData.zipCode,
+            country: formData.country
+          }
+        ]
       };
       
       const mockToken = 'mock-jwt-token-' + Date.now();

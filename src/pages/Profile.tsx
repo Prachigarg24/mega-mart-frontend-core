@@ -45,29 +45,8 @@ const Profile = () => {
     products: order.items.map((item: any) => item.name)
   }));
 
-  // Mock addresses
-  const mockAddresses = [
-    {
-      id: 1,
-      type: 'home',
-      name: 'Home',
-      address: '123 Main Street, Apartment 4B',
-      city: 'Mumbai',
-      state: 'Maharashtra',
-      zipCode: '400001',
-      isDefault: true
-    },
-    {
-      id: 2,
-      type: 'work',
-      name: 'Office',
-      address: '456 Business Park, Floor 12',
-      city: 'Mumbai',
-      state: 'Maharashtra',
-      zipCode: '400051',
-      isDefault: false
-    }
-  ];
+  // Get user addresses from auth state or use defaults
+  const userAddresses = user?.addresses || [];
 
   const handleLogout = () => {
     dispatch(logout());
@@ -188,7 +167,7 @@ const Profile = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Saved Addresses</p>
-                  <p className="text-2xl font-bold">{mockAddresses.length}</p>
+                  <p className="text-2xl font-bold">{userAddresses.length}</p>
                 </div>
                 <MapPin className="w-8 h-8 text-green-500" />
               </div>
@@ -430,34 +409,38 @@ const Profile = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {mockAddresses.map((address) => (
-                      <div key={address.id} className="border border-border rounded-lg p-4">
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex items-center space-x-2">
-                            <Badge variant="outline">{address.name}</Badge>
-                            {address.isDefault && (
-                              <Badge className="bg-green-100 text-green-700">Default</Badge>
-                            )}
+                  {userAddresses.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {userAddresses.map((address: any, index: number) => (
+                        <div key={address.id || index} className="border border-border rounded-lg p-4">
+                          <div className="flex items-center justify-between mb-3">
+                            <div className="flex items-center space-x-2">
+                              <Badge variant="outline" className="capitalize">{address.type}</Badge>
+                            </div>
+                            <Button size="sm" variant="ghost">
+                              <Edit3 className="w-4 h-4" />
+                            </Button>
                           </div>
-                          <Button size="sm" variant="ghost">
-                            <Edit3 className="w-4 h-4" />
-                          </Button>
+                          
+                          <div className="space-y-1 text-sm">
+                            <p>{address.street}</p>
+                            <p>{address.city}, {address.state}</p>
+                            <p>{address.zipCode}, {address.country}</p>
+                          </div>
+                          
+                          <div className="flex space-x-2 mt-4">
+                            <Button size="sm" variant="outline">Edit</Button>
+                            <Button size="sm" variant="outline">Delete</Button>
+                          </div>
                         </div>
-                        
-                        <div className="space-y-1 text-sm">
-                          <p>{address.address}</p>
-                          <p>{address.city}, {address.state}</p>
-                          <p>{address.zipCode}</p>
-                        </div>
-                        
-                        <div className="flex space-x-2 mt-4">
-                          <Button size="sm" variant="outline">Edit</Button>
-                          <Button size="sm" variant="outline">Delete</Button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-center py-8">
+                      <p className="text-muted-foreground mb-4">No saved addresses yet</p>
+                      <Button>Add Your First Address</Button>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </TabsContent>

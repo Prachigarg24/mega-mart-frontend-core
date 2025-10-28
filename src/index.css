@@ -142,6 +142,121 @@
     --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.4), 0 10px 10px -5px hsl(0 0% 0% / 0.2);
     --shadow-glow: 0 0 30px hsl(25 95% 53% / 0.4);
   }
+
+  /* Ocean Blue Theme */
+  .ocean-blue {
+    --background: 210 40% 98%;
+    --foreground: 210 60% 10%;
+    --card: 210 30% 99%;
+    --card-foreground: 210 60% 10%;
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 210 100% 45%;
+    --secondary: 195 85% 55%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-hover: 195 85% 50%;
+    --muted: 210 30% 96%;
+    --muted-foreground: 210 20% 45%;
+    --accent: 200 100% 55%;
+    --accent-foreground: 0 0% 100%;
+    --border: 210 30% 90%;
+    --input: 210 30% 90%;
+    --ring: 210 100% 50%;
+    --gradient-primary: linear-gradient(135deg, hsl(210 100% 50%) 0%, hsl(195 85% 55%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(210 100% 50%) 0%, hsl(200 95% 52%) 50%, hsl(195 85% 55%) 100%);
+  }
+
+  /* Forest Green Theme */
+  .forest-green {
+    --background: 140 30% 98%;
+    --foreground: 140 50% 10%;
+    --card: 140 25% 99%;
+    --card-foreground: 140 50% 10%;
+    --primary: 140 60% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 140 60% 40%;
+    --secondary: 155 55% 50%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-hover: 155 55% 45%;
+    --muted: 140 25% 96%;
+    --muted-foreground: 140 20% 45%;
+    --accent: 130 65% 48%;
+    --accent-foreground: 0 0% 100%;
+    --border: 140 25% 90%;
+    --input: 140 25% 90%;
+    --ring: 140 60% 45%;
+    --gradient-primary: linear-gradient(135deg, hsl(140 60% 45%) 0%, hsl(155 55% 50%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(140 60% 45%) 0%, hsl(145 58% 47%) 50%, hsl(155 55% 50%) 100%);
+  }
+
+  /* Royal Purple Theme */
+  .royal-purple {
+    --background: 270 30% 98%;
+    --foreground: 270 50% 10%;
+    --card: 270 25% 99%;
+    --card-foreground: 270 50% 10%;
+    --primary: 270 60% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 270 60% 50%;
+    --secondary: 285 60% 60%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-hover: 285 60% 55%;
+    --muted: 270 25% 96%;
+    --muted-foreground: 270 20% 45%;
+    --accent: 260 65% 58%;
+    --accent-foreground: 0 0% 100%;
+    --border: 270 25% 90%;
+    --input: 270 25% 90%;
+    --ring: 270 60% 55%;
+    --gradient-primary: linear-gradient(135deg, hsl(270 60% 55%) 0%, hsl(285 60% 60%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(270 60% 55%) 0%, hsl(277 62% 57%) 50%, hsl(285 60% 60%) 100%);
+  }
+
+  /* Sunset Red Theme */
+  .sunset-red {
+    --background: 0 30% 98%;
+    --foreground: 0 50% 10%;
+    --card: 0 25% 99%;
+    --card-foreground: 0 50% 10%;
+    --primary: 0 80% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 0 80% 50%;
+    --secondary: 15 85% 58%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-hover: 15 85% 53%;
+    --muted: 0 25% 96%;
+    --muted-foreground: 0 20% 45%;
+    --accent: 350 85% 60%;
+    --accent-foreground: 0 0% 100%;
+    --border: 0 25% 90%;
+    --input: 0 25% 90%;
+    --ring: 0 80% 55%;
+    --gradient-primary: linear-gradient(135deg, hsl(0 80% 55%) 0%, hsl(15 85% 58%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(0 80% 55%) 0%, hsl(7 82% 56%) 50%, hsl(15 85% 58%) 100%);
+  }
+
+  /* Golden Yellow Theme */
+  .golden-yellow {
+    --background: 45 35% 98%;
+    --foreground: 45 55% 10%;
+    --card: 45 30% 99%;
+    --card-foreground: 45 55% 10%;
+    --primary: 45 100% 50%;
+    --primary-foreground: 45 55% 10%;
+    --primary-hover: 45 100% 45%;
+    --secondary: 38 95% 55%;
+    --secondary-foreground: 38 55% 10%;
+    --secondary-hover: 38 95% 50%;
+    --muted: 45 30% 96%;
+    --muted-foreground: 45 20% 40%;
+    --accent: 50 100% 48%;
+    --accent-foreground: 50 55% 10%;
+    --border: 45 30% 90%;
+    --input: 45 30% 90%;
+    --ring: 45 100% 50%;
+    --gradient-primary: linear-gradient(135deg, hsl(45 100% 50%) 0%, hsl(38 95% 55%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(45 100% 50%) 0%, hsl(41 97% 52%) 50%, hsl(38 95% 55%) 100%);
+  }
 }
 
 @layer base {

@@ -6,23 +6,23 @@
 
 @layer base {
   :root {
-    /* Core Brand Colors - Modern Blue Theme */
+    /* Core Brand Colors - Modern Orange Theme */
     --background: 0 0% 100%;
-    --foreground: 215 25% 15%;
+    --foreground: 20 14% 15%;
 
     /* Card System */
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
+    --card-foreground: 20 14% 15%;
 
-    /* Primary Brand - Vibrant Blue */
-    --primary: 217 91% 60%;
+    /* Primary Brand - Vibrant Orange */
+    --primary: 25 95% 53%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 217 91% 50%;
+    --primary-hover: 25 95% 48%;
 
-    /* Secondary - Sky Blue */
-    --secondary: 199 89% 48%;
+    /* Secondary - Coral */
+    --secondary: 14 91% 58%;
     --secondary-foreground: 0 0% 100%;
-    --secondary-hover: 199 89% 42%;
+    --secondary-hover: 14 91% 52%;
 
     /* Success - Green */
     --success: 142 76% 36%;
@@ -37,34 +37,34 @@
     --destructive-foreground: 0 0% 100%;
 
     /* Muted Colors */
-    --muted: 214 32% 95%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 24 33% 97%;
+    --muted-foreground: 25 16% 47%;
 
     /* Accent Colors */
-    --accent: 199 89% 48%;
+    --accent: 33 100% 50%;
     --accent-foreground: 0 0% 100%;
 
     /* Border & Input */
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 217 91% 60%;
+    --border: 24 20% 92%;
+    --input: 24 20% 92%;
+    --ring: 25 95% 53%;
 
-    /* Gradients - Blue Theme */
-    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(217 91% 50%) 100%);
-    --gradient-secondary: linear-gradient(135deg, hsl(199 89% 48%) 0%, hsl(199 89% 38%) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(207 90% 54%) 50%, hsl(199 89% 48%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(214 32% 98%) 100%);
-    --gradient-mesh: radial-gradient(at 40% 20%, hsl(217 91% 94%) 0px, transparent 50%),
-                     radial-gradient(at 80% 0%, hsl(199 89% 92%) 0px, transparent 50%),
-                     radial-gradient(at 0% 50%, hsl(207 90% 93%) 0px, transparent 50%);
+    /* Gradients - Orange Theme */
+    --gradient-primary: linear-gradient(135deg, hsl(25 95% 53%) 0%, hsl(14 91% 58%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(33 100% 50%) 0%, hsl(25 95% 48%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(25 95% 53%) 0%, hsl(22 93% 55%) 50%, hsl(14 91% 58%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(24 33% 98%) 100%);
+    --gradient-mesh: radial-gradient(at 40% 20%, hsl(25 95% 92%) 0px, transparent 50%),
+                     radial-gradient(at 80% 0%, hsl(14 91% 90%) 0px, transparent 50%),
+                     radial-gradient(at 0% 50%, hsl(33 100% 92%) 0px, transparent 50%);
     --gradient-shine: linear-gradient(110deg, transparent 0%, hsl(0 0% 100% / 0.08) 45%, hsl(0 0% 100% / 0.2) 50%, hsl(0 0% 100% / 0.08) 55%, transparent 100%);
 
-    /* Shadows - Blue Tinted */
-    --shadow-sm: 0 1px 2px 0 hsl(217 91% 60% / 0.05);
-    --shadow-md: 0 4px 6px -1px hsl(217 91% 60% / 0.1), 0 2px 4px -1px hsl(217 91% 60% / 0.06);
-    --shadow-lg: 0 10px 15px -3px hsl(217 91% 60% / 0.1), 0 4px 6px -2px hsl(217 91% 60% / 0.05);
-    --shadow-xl: 0 20px 25px -5px hsl(217 91% 60% / 0.1), 0 10px 10px -5px hsl(217 91% 60% / 0.04);
-    --shadow-glow: 0 0 20px hsl(217 91% 60% / 0.3);
+    /* Shadows - Orange Tinted */
+    --shadow-sm: 0 1px 2px 0 hsl(25 95% 53% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(25 95% 53% / 0.1), 0 2px 4px -1px hsl(25 95% 53% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(25 95% 53% / 0.1), 0 4px 6px -2px hsl(25 95% 53% / 0.05);
+    --shadow-xl: 0 20px 25px -5px hsl(25 95% 53% / 0.1), 0 10px 10px -5px hsl(25 95% 53% / 0.04);
+    --shadow-glow: 0 0 20px hsl(25 95% 53% / 0.3);
 
     /* Animations */
     --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
@@ -91,20 +91,20 @@
   }
 
   .dark {
-    /* Dark Mode Colors - Blue Theme */
-    --background: 222 47% 11%;
-    --foreground: 213 31% 91%;
+    /* Dark Mode Colors - Orange Theme */
+    --background: 20 30% 8%;
+    --foreground: 24 20% 92%;
 
-    --card: 222 47% 14%;
-    --card-foreground: 213 31% 91%;
+    --card: 20 25% 12%;
+    --card-foreground: 24 20% 92%;
 
-    --primary: 217 91% 60%;
+    --primary: 25 95% 53%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 217 91% 55%;
+    --primary-hover: 25 95% 58%;
 
-    --secondary: 222 47% 18%;
-    --secondary-foreground: 213 31% 91%;
-    --secondary-hover: 222 47% 22%;
+    --secondary: 20 25% 16%;
+    --secondary-foreground: 24 20% 92%;
+    --secondary-hover: 20 25% 20%;
 
     --success: 142 76% 36%;
     --success-foreground: 0 0% 100%;
@@ -115,32 +115,32 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --muted: 223 47% 20%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 20 25% 18%;
+    --muted-foreground: 24 15% 65%;
 
-    --accent: 199 89% 48%;
+    --accent: 33 100% 50%;
     --accent-foreground: 0 0% 100%;
 
-    --border: 223 47% 20%;
-    --input: 223 47% 20%;
-    --ring: 217 91% 60%;
+    --border: 20 25% 18%;
+    --input: 20 25% 18%;
+    --ring: 25 95% 53%;
 
-    /* Dark Mode Gradients - Blue Theme */
-    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(217 91% 50%) 100%);
-    --gradient-secondary: linear-gradient(135deg, hsl(199 89% 48%) 0%, hsl(199 89% 38%) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(207 90% 54%) 50%, hsl(199 89% 48%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(222 47% 14%) 0%, hsl(222 47% 17%) 100%);
-    --gradient-mesh: radial-gradient(at 40% 20%, hsl(217 91% 20%) 0px, transparent 50%),
-                     radial-gradient(at 80% 0%, hsl(199 89% 20%) 0px, transparent 50%),
-                     radial-gradient(at 0% 50%, hsl(207 90% 20%) 0px, transparent 50%);
+    /* Dark Mode Gradients - Orange Theme */
+    --gradient-primary: linear-gradient(135deg, hsl(25 95% 53%) 0%, hsl(14 91% 58%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(33 100% 50%) 0%, hsl(25 95% 48%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(25 95% 53%) 0%, hsl(22 93% 55%) 50%, hsl(14 91% 58%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(20 25% 12%) 0%, hsl(20 25% 15%) 100%);
+    --gradient-mesh: radial-gradient(at 40% 20%, hsl(25 95% 15%) 0px, transparent 50%),
+                     radial-gradient(at 80% 0%, hsl(14 91% 15%) 0px, transparent 50%),
+                     radial-gradient(at 0% 50%, hsl(33 100% 15%) 0px, transparent 50%);
     --gradient-shine: linear-gradient(110deg, transparent 0%, hsl(0 0% 100% / 0.04) 45%, hsl(0 0% 100% / 0.12) 50%, hsl(0 0% 100% / 0.04) 55%, transparent 100%);
 
-    /* Dark Mode Shadows - Blue Tinted */
+    /* Dark Mode Shadows - Orange Tinted */
     --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.3);
     --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.4), 0 2px 4px -1px hsl(0 0% 0% / 0.2);
     --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.4), 0 4px 6px -2px hsl(0 0% 0% / 0.2);
     --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.4), 0 10px 10px -5px hsl(0 0% 0% / 0.2);
-    --shadow-glow: 0 0 30px hsl(217 91% 60% / 0.4);
+    --shadow-glow: 0 0 30px hsl(25 95% 53% / 0.4);
   }
 }
 
@@ -234,7 +234,11 @@
 
   /* Navbar Glass Effect */
   .navbar-glass {
-    @apply bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg border-b border-border/50;
+    @apply bg-white/95 backdrop-blur-lg border-b border-border/50 shadow-sm;
+  }
+  
+  .dark .navbar-glass {
+    background: hsl(20 30% 8% / 0.95);
   }
 
   /* Loading Animations */

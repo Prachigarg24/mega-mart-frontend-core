@@ -26,10 +26,14 @@ interface AuthState {
   loading: boolean;
 }
 
+// Load user and token from localStorage on initialization
+const storedToken = localStorage.getItem('megamart_token');
+const storedUser = localStorage.getItem('megamart_user');
+
 const initialState: AuthState = {
-  isAuthenticated: false,
-  user: null,
-  token: localStorage.getItem('megamart_token'),
+  isAuthenticated: !!(storedToken && storedUser),
+  user: storedUser ? JSON.parse(storedUser) : null,
+  token: storedToken,
   loading: false,
 };
 

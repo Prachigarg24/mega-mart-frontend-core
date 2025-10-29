@@ -1,4 +1,4 @@
-import { Moon, Sun, Monitor, Palette, RotateCcw } from 'lucide-react';
+import { Moon, Sun, Palette, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -12,9 +12,8 @@ import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
 const themes = [
-  { name: 'Light', value: 'light', icon: Sun, color: '#ff7b00', bgColor: '#fff' },
-  { name: 'Dark', value: 'dark', icon: Moon, color: '#ff7b00', bgColor: '#1a1410' },
-  { name: 'System', value: 'system', icon: Monitor, color: '#ff7b00', bgColor: '#808080' },
+  { name: 'Light Orange', value: 'light', icon: Sun, color: '#ff7b00', bgColor: '#fff' },
+  { name: 'Dark Orange', value: 'dark', icon: Moon, color: '#ff7b00', bgColor: '#1a1410' },
   { name: 'Ocean Blue', value: 'ocean-blue', icon: Palette, color: '#0080ff', bgColor: '#f5f9ff' },
   { name: 'Forest Green', value: 'forest-green', icon: Palette, color: '#2d9f5a', bgColor: '#f5fbf7' },
   { name: 'Royal Purple', value: 'royal-purple', icon: Palette, color: '#9966cc', bgColor: '#f9f5fc' },
@@ -23,17 +22,31 @@ const themes = [
 ];
 
 const ThemeToggle = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, themes: availableThemes } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  const handleThemeChange = (newTheme: string) => {
+    // Force remove all theme classes first
+    const htmlElement = document.documentElement;
+    htmlElement.classList.remove('light', 'dark', 'ocean-blue', 'forest-green', 'royal-purple', 'sunset-red', 'golden-yellow');
+    
+    // Set the new theme
+    setTheme(newTheme);
+    
+    // Force add the new theme class
+    setTimeout(() => {
+      htmlElement.classList.add(newTheme);
+    }, 10);
+  };
+
   if (!mounted) {
     return (
       <Button variant="ghost" size="sm" className="gap-2">
-        <Sun className="h-4 w-4" />
+        <Palette className="h-4 w-4" />
         <span className="hidden md:inline">Theme</span>
       </Button>
     );
@@ -56,8 +69,11 @@ const ThemeToggle = () => {
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => setTheme('light')}
-            className="h-6 px-2 text-xs"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleThemeChange('light');
+            }}
+            className="h-6 px-2 text-xs hover:bg-primary/10"
           >
             <RotateCcw className="h-3 w-3 mr-1" />
             Reset
@@ -66,27 +82,30 @@ const ThemeToggle = () => {
         <DropdownMenuSeparator />
         
         {/* Default Themes */}
-        <div className="px-2 py-1 text-xs font-medium text-muted-foreground">Default</div>
-        {themes.slice(0, 3).map((t) => {
+        <div className="px-2 py-1 text-xs font-semibold text-muted-foreground uppercase tracking-wide">Default</div>
+        {themes.slice(0, 2).map((t) => {
           const ThemeIcon = t.icon;
           const isActive = theme === t.value;
           return (
             <DropdownMenuItem
               key={t.value}
-              onClick={() => setTheme(t.value)}
-              className="flex items-center justify-between cursor-pointer py-3"
+              onClick={() => handleThemeChange(t.value)}
+              className="flex items-center justify-between cursor-pointer py-3 focus:bg-accent"
             >
               <div className="flex items-center gap-3">
                 <div 
-                  className="w-8 h-8 rounded-lg flex items-center justify-center shadow-sm border"
-                  style={{ backgroundColor: t.bgColor }}
+                  className="w-9 h-9 rounded-lg flex items-center justify-center shadow-sm border-2 transition-all"
+                  style={{ 
+                    backgroundColor: t.bgColor,
+                    borderColor: isActive ? t.color : 'transparent'
+                  }}
                 >
                   <ThemeIcon className="h-4 w-4" style={{ color: t.color }} />
                 </div>
                 <span className="font-medium">{t.name}</span>
               </div>
               {isActive && (
-                <div className="w-2 h-2 rounded-full bg-primary" />
+                <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: t.color }} />
               )}
             </DropdownMenuItem>
           );
@@ -94,28 +113,31 @@ const ThemeToggle = () => {
         
         <DropdownMenuSeparator />
         
-        {/* Custom Themes */}
-        <div className="px-2 py-1 text-xs font-medium text-muted-foreground">Custom Colors</div>
-        {themes.slice(3).map((t) => {
+        {/* Custom Color Themes */}
+        <div className="px-2 py-1 text-xs font-semibold text-muted-foreground uppercase tracking-wide">Color Themes</div>
+        {themes.slice(2).map((t) => {
           const ThemeIcon = t.icon;
           const isActive = theme === t.value;
           return (
             <DropdownMenuItem
               key={t.value}
-              onClick={() => setTheme(t.value)}
-              className="flex items-center justify-between cursor-pointer py-3"
+              onClick={() => handleThemeChange(t.value)}
+              className="flex items-center justify-between cursor-pointer py-3 focus:bg-accent"
             >
               <div className="flex items-center gap-3">
                 <div 
-                  className="w-8 h-8 rounded-lg flex items-center justify-center shadow-sm border"
-                  style={{ backgroundColor: t.bgColor }}
+                  className="w-9 h-9 rounded-lg flex items-center justify-center shadow-sm border-2 transition-all"
+                  style={{ 
+                    backgroundColor: t.bgColor,
+                    borderColor: isActive ? t.color : 'transparent'
+                  }}
                 >
                   <ThemeIcon className="h-4 w-4" style={{ color: t.color }} />
                 </div>
                 <span className="font-medium">{t.name}</span>
               </div>
               {isActive && (
-                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: t.color }} />
+                <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: t.color }} />
               )}
             </DropdownMenuItem>
           );

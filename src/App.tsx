@@ -35,9 +35,9 @@ const App = () => (
       <ThemeProvider
         attribute="class"
         defaultTheme="light"
-        enableSystem={true}
-        themes={['light', 'dark', 'system', 'ocean-blue', 'forest-green', 'royal-purple', 'sunset-red', 'golden-yellow']}
-        disableTransitionOnChange={false}
+        enableSystem={false}
+        storageKey="megamart-theme"
+        themes={['light', 'dark', 'ocean-blue', 'forest-green', 'royal-purple', 'sunset-red', 'golden-yellow']}
       >
         <TooltipProvider>
         <Toaster />

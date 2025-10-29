@@ -30,17 +30,7 @@ const ThemeToggle = () => {
   }, []);
 
   const handleThemeChange = (newTheme: string) => {
-    // Force remove all theme classes first
-    const htmlElement = document.documentElement;
-    htmlElement.classList.remove('light', 'dark', 'ocean-blue', 'forest-green', 'royal-purple', 'sunset-red', 'golden-yellow');
-    
-    // Set the new theme
     setTheme(newTheme);
-    
-    // Force add the new theme class
-    setTimeout(() => {
-      htmlElement.classList.add(newTheme);
-    }, 10);
   };
 
   if (!mounted) {

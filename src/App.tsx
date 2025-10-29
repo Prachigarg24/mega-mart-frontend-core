@@ -34,8 +34,9 @@ const App = () => (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider
         attribute="class"
-        defaultTheme="system"
+        defaultTheme="light"
         enableSystem={true}
+        themes={['light', 'dark', 'system', 'ocean-blue', 'forest-green', 'royal-purple', 'sunset-red', 'golden-yellow']}
         disableTransitionOnChange={false}
       >
         <TooltipProvider>
